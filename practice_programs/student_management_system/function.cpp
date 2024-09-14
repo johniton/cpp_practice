@@ -132,13 +132,13 @@ void STUDENT::displayStudent()
 student* t;
 for(int k=1;k<=45;k++)
 std::cout<<'_';
-std::cout<<std::endl<<std::left<<std::setw(10)<<"Student Name "<<std::left<<std::setw(20)<<"STUDENT RollNo"<<std::endl;
+std::cout<<std::endl<<std::left<<std::setw(20)<<"Student Name "<<'|'<<std::left<<std::setw(20)<<"STUDENT RollNo"<<'|'<<std::endl;
 t=start;
 for(int k=1;k<=45;k++)
 std::cout<<'_';
 for(;t!=nullptr;t=t->link)
 {
-std::cout<<std::endl<<std::left<<std::setw(10)<<t->name<<std::left<<std::setw(20)<<t->rollNo<<std::endl;
+std::cout<<std::endl<<std::left<<std::setw(20)<<t->name<<'|'<<std::left<<std::setw(20)<<t->rollNo<<'|'<<std::endl;
 
 for(int k=1;k<=45;k++)
 std::cout<<'_';
