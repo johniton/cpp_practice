@@ -22,6 +22,9 @@ if(q==nullptr)
 {
 b=false;
 }
+//
+else
+    std::cout<<"\n THIS ROLL BELONGS TO SOMEONE ELSE";
 }while(b);
 
 std::cout<<"\n Marks in english   maths and  science repsectively:";
@@ -127,14 +130,19 @@ void STUDENT::displayStudent()
 {
     system("clear");
 student* t;
-std::cout<<std::endl<<std::left<<std::setw(10)<<"Student Name "<<std::setw(15)<<"STUDENT RollNo"<<std::setw(15)<<"Maths Marks"<<std::endl;
-t=start;
-for(;t!=nullptr;t=t->link)
-{
-std::cout<<std::endl<<std::left<<std::setw(10)<<t->name<<std::setw(15)<<t->rollNo<<std::setw(15)<<t->mathMks<<std::endl;
-}
 for(int k=1;k<=45;k++)
 std::cout<<'_';
+std::cout<<std::endl<<std::left<<std::setw(10)<<"Student Name "<<std::left<<std::setw(20)<<"STUDENT RollNo"<<std::endl;
+t=start;
+for(int k=1;k<=45;k++)
+std::cout<<'_';
+for(;t!=nullptr;t=t->link)
+{
+std::cout<<std::endl<<std::left<<std::setw(10)<<t->name<<std::left<<std::setw(20)<<t->rollNo<<std::endl;
+
+for(int k=1;k<=45;k++)
+std::cout<<'_';
+}
 }
 
 void STUDENT::searchStudent()
