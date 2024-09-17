@@ -1,6 +1,7 @@
 #include<iostream>
 #include<random>
 #include<chrono>
+#include<fstream>
 namespace Random
 {
 
@@ -54,7 +55,8 @@ enum Type
 	maxMonsterTypes,
 };
 std::string getTypeString();
-void print();
+void writefile();
+void readfile();
 Monster()=default;
 Monster(Type M , std::string n , std::string r , int hp):type{M},name{n},roar{r},hitpoints{hp}
 {}
@@ -66,6 +68,27 @@ int hitpoints{};
 
 
 };
+void Monster::writefile()
+{
+
+std::ofstream writing("monsterfile.txt",std::ios::app);
+writing<<"\n "<<name<<" the "<<getTypeString()<<" has "<<hitpoints<<" hitpoints and says "<<roar;
+writing.close();
+}
+
+
+void Monster::readfile()
+{
+char ch;
+std::ifstream reading("monsterfile.txt",std::ios::in);
+while(! reading.eof())
+{
+ch=reading.get();
+std::cout<<ch;
+}
+reading.close();
+}
+
 
 std::string Monster::getTypeString()
 {
@@ -82,11 +105,7 @@ case zombie:return("zombie");
 default:return("???");
 }
 }
-void Monster::print()
-{
-std::cout<<"\n "<<name<<" the "<<getTypeString()<<" has "<<hitpoints<<" hitpoints and says "<<roar;
 
-}
 
 namespace MonsterGenerator
 {
@@ -128,28 +147,39 @@ getroar(Random::get(0,5)),
 Random::get(1,100)};
 }
 
+
 };
+
+
 int main()
 {
-	Monster m{};
-	char ch{};
-	do
+
+
+    Monster m;
+    char ch{};
+    do
     {
-        std::cout<<"\n Enter g to generate \n d to display and q to quit\n";
-        std::cout<<"\n Enter your choice:";
-        std::cin>>ch;
-        switch(ch)
-        {
-        case 'g':
-        case 'G':m=MonsterGenerator::generate();break;
-        case 'd':
-        case 'D':m.print();break;
-        case 'q':
-        case 'Q':break;
-        default: std::cout<< "\n wrong choice try again:";
+    std::cout<<"\n Enter g to generate monster \n d to display from file\n Enter:";
+    std::cin>>ch;
+    switch(ch)
+    {
+    case 'g':
+    case 'G':
+    m=MonsterGenerator::generate();
+    std::cout<<"\n Monster generated!!!\n";
+    m.writefile();
+    break;
+    case 'd':
+    case 'D':
+    m.readfile();
+    std::cout<<"\n";
+    break;
+    case 'q':
+    break;
+    default:
+    std::cout<<"\n Invalid choice:";
+    }
 
-        }
-    }while(ch=='g'||ch=='G'||ch=='d'||ch=='D');
-
+    }while(ch!='q');
 	return 0;
 }
