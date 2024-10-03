@@ -83,3 +83,45 @@ reading.close();
 
 
 }
+
+void STUDENT::deleteStudent() {
+    ifstream reading("student.txt");
+    ofstream writing("new.txt");
+
+    if (!reading.is_open() || !writing.is_open()) {
+        cout << "Error opening files!" << endl;
+        return;
+    }
+
+    cout << "\nEnter the roll number of the student to be deleted: ";
+    int roll;
+    cin >> roll;
+    string line, word;
+
+    while (getline(reading, line)) {
+        // Skip empty lines
+        if (line.empty())
+            continue;
+
+        stringstream ss(line);
+        ss >> word;  // Extract the first word from the line
+
+        // Check if the word contains a valid numeric value before using stoi
+        if (!word.empty() && all_of(word.begin(), word.end(), ::isdigit)) {
+            int tempRoll = stoi(word);  // Convert the first word to an integer (roll number)
+
+            // Write to the new file only if the roll number does not match
+            if (tempRoll != roll) {
+                writing << line << endl;
+            }
+        }
+
+    }
+
+    reading.close();
+    writing.close();
+
+    // Replace the old file with the new file
+    remove("student.txt");
+    rename("new.txt", "student.txt");
+}
