@@ -96,12 +96,13 @@ void List::pop_back(){
 }
 
 void List::insert_node(int val,int pos){
-	if(pos<0){
+	if(pos<1){
 		cout<<"\n Invalid position:";
 		return;
 	}
-	if(pos==0){
+	if(pos==1){
 		push_front(val);
+		return;
 	}
 	Node* temp=head;
 	Node* new_node= new Node(val);
@@ -119,10 +120,10 @@ void List::insert_node(int val,int pos){
 
 void List::search(int val){
 	Node*temp=head;
-	int count=0;
+	int count=1;
 	while(temp!=NULL){
 		if (temp->data==val){
-			cout<<"\n Value Found at "<<count;
+			cout<<"\n Value Found at position "<<count;
 			return;
 		}
 		count++;
@@ -146,7 +147,7 @@ int main(){
 	ll.pop_back();
 	ll.display();*/
 	ll.insert_node(4,1);
-//	ll.insert_node(5,5);
+	ll.insert_node(5,5);
 	ll.display();
-	ll.search(6);
+	ll.search(4);
 }
