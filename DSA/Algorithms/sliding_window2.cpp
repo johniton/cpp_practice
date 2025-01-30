@@ -1,5 +1,4 @@
 // To display the first negative number in a window of size k
-
 #include<stdlib.h>
 #include<iostream>
 #include <vector>
@@ -28,7 +27,7 @@ vector<int> sliding_window(int A[],int size,int k){
 			//	vec.erase(vec.begin());	
 				if (A[i] == vec.front()) { 
   				  vec.erase(vec.begin());  // Remove first negative if it is out of the window
-}
+				}
 
 			}
 			i++;
