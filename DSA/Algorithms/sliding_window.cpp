@@ -34,7 +34,7 @@ int sliding_window(int A[],int size,int k){
 	return max;
 }
 
-
+//
 
 
 int main()
